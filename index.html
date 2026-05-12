@@ -1,0 +1,262 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--en-blue:#3a8cbd;--en-blue-dark:#2a6d99;--en-red:#c0504d;--en-gray:#8c8c8c;--en-bg:#fdf5f5;--en-bg2:#f7f8fa;--en-text:#2c2c2c;--en-border:#e0d8d8;--en-border2:#e2e2e2}
+.wf-wrap{padding:1rem 0;max-width:900px;font-family:var(--font-sans)}
+.page-tabs{display:flex;gap:6px;margin-bottom:1.5rem;flex-wrap:wrap}
+.tab{padding:7px 14px;font-size:12px;border:0.5px solid var(--en-border);border-radius:8px;background:#fff;color:var(--en-gray);cursor:pointer;transition:all 0.15s}
+.tab.active{background:#e8f4fb;color:var(--en-blue-dark);border-color:var(--en-blue);font-weight:500}
+.page{display:none}
+.page.active{display:block}
+.device{background:var(--en-bg);border-radius:12px;padding:1rem;border:0.5px solid var(--en-border)}
+.wf{background:#fff;border:0.5px solid var(--en-border2);border-radius:8px;overflow:hidden;max-width:480px;margin:0 auto}
+.wf-nav{background:#fff;padding:10px 14px;display:flex;align-items:center;justify-content:space-between;border-bottom:0.5px solid var(--en-border2)}
+.wf-logo{font-size:12px;font-weight:500;color:var(--en-text);display:flex;align-items:center;gap:5px}
+.wf-logo-mark{display:flex;gap:2px}
+.wf-logo-bar{width:5px;height:14px;border-radius:3px}
+.wf-navlinks{display:flex;gap:10px}
+.wf-navlink{font-size:10px;color:var(--en-gray)}
+.wf-hero{background:var(--en-blue);padding:28px 18px;text-align:center}
+.wf-hero-tag{font-size:9px;color:rgba(255,255,255,0.9);background:rgba(255,255,255,0.18);padding:3px 8px;border-radius:20px;display:inline-block;margin-bottom:8px;border:0.5px solid rgba(255,255,255,0.35)}
+.wf-hero-h{font-size:14px;font-weight:500;color:#fff;margin-bottom:6px;line-height:1.4}
+.wf-hero-sub{font-size:10px;color:rgba(255,255,255,0.85);margin-bottom:14px;line-height:1.5}
+.wf-btn{display:inline-block;padding:7px 14px;font-size:10px;border-radius:6px;margin:3px;cursor:default;font-weight:500}
+.wf-btn-primary{background:#fff;color:var(--en-blue-dark)}
+.wf-btn-red{background:var(--en-red);color:#fff}
+.wf-btn-outline{border:1px solid var(--en-red);color:#fff;background:transparent}
+.wf-section{padding:14px 14px;border-bottom:0.5px solid var(--en-border2)}
+.wf-section:last-child{border-bottom:none}
+.wf-label{font-size:9px;font-weight:500;color:var(--en-gray);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:7px;opacity:0.8}
+.wf-h{font-size:12px;font-weight:500;color:var(--en-text);margin-bottom:4px}
+.wf-p{font-size:10px;color:var(--en-gray);line-height:1.6}
+.card-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;margin-top:7px}
+.card-grid.t2{grid-template-columns:1fr 1fr}
+.wf-card{background:var(--en-bg2);border-radius:7px;padding:9px;border:0.5px solid var(--en-border)}
+.wf-card-icon{width:22px;height:22px;border-radius:5px;background:#e8f4fb;margin-bottom:5px}
+.wf-card-t{font-size:9px;font-weight:500;color:var(--en-blue-dark);margin-bottom:2px}
+.wf-card-p{font-size:8px;color:var(--en-gray);line-height:1.4}
+.wf-field{background:var(--en-bg2);border:0.5px solid var(--en-border);border-radius:5px;height:26px;margin-top:5px;width:100%}
+.wf-select{background:var(--en-bg2);border:0.5px solid var(--en-border);border-radius:5px;height:26px;margin-top:5px;width:100%}
+.wf-slider{height:4px;background:var(--en-border);border-radius:2px;margin-top:12px;position:relative}
+.wf-slider-thumb{width:13px;height:13px;border-radius:50%;background:var(--en-blue);position:absolute;top:-5px;left:38%}
+.wf-result{background:var(--en-blue);border-radius:7px;padding:11px;margin-top:7px}
+.wf-result-label{font-size:9px;color:rgba(255,255,255,0.75);margin-bottom:2px}
+.wf-result-val{font-size:15px;font-weight:500;color:#fff;margin-bottom:6px}
+.wf-result-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px}
+.wf-result-card{background:rgba(255,255,255,0.12);border-radius:5px;padding:5px;text-align:center}
+.wf-result-card-label{font-size:7px;color:rgba(255,255,255,0.7);margin-bottom:2px}
+.wf-result-card-val{font-size:9px;font-weight:500;color:#fff}
+.wf-chip{display:inline-block;font-size:8px;padding:2px 7px;border-radius:20px;border:0.5px solid var(--en-border);color:var(--en-gray);margin:2px;background:#fff}
+.wf-chip.sel{background:#e8f4fb;color:var(--en-blue-dark);border-color:var(--en-blue)}
+.wf-seminar-box{background:var(--en-bg);border-radius:7px;padding:10px;border-left:3px solid var(--en-blue);margin-top:7px}
+.wf-profile{display:flex;align-items:center;gap:10px;margin-top:7px}
+.wf-avatar{width:38px;height:38px;border-radius:50%;background:var(--en-bg);border:0.5px solid var(--en-border);flex-shrink:0}
+.wf-article{display:flex;gap:7px;padding:7px 0;border-bottom:0.5px solid var(--en-border2)}
+.wf-article:last-child{border-bottom:none}
+.wf-article-thumb{width:46px;height:34px;border-radius:5px;background:var(--en-bg);flex-shrink:0;border:0.5px solid var(--en-border)}
+.wf-footer{background:var(--en-blue-dark);padding:12px 14px;border-top:0.5px solid var(--en-border2)}
+.wf-footer-text{font-size:9px;color:rgba(255,255,255,0.5);line-height:1.8}
+.annotation{font-size:10px;color:var(--en-gray);margin-top:5px;padding:3px 7px;border-left:2px solid var(--en-border);opacity:0.8}
+.section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.page-title{font-size:13px;font-weight:500;color:var(--en-text)}
+.page-url{font-size:10px;color:var(--en-gray);font-family:monospace}
+.wf-form-row{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:5px}
+.wf-radio-group{display:flex;flex-direction:column;gap:4px;margin-top:5px}
+.wf-radio{display:flex;align-items:center;gap:5px;font-size:9px;color:var(--en-gray)}
+.wf-radio-dot{width:11px;height:11px;border-radius:50%;border:0.5px solid var(--en-border);flex-shrink:0}
+.wf-textarea{background:var(--en-bg2);border:0.5px solid var(--en-border);border-radius:5px;height:44px;margin-top:5px;width:100%}
+.wf-cta-bar{background:var(--en-bg);padding:10px 14px;border-top:0.5px solid var(--en-border2);display:flex;gap:6px;justify-content:center}
+.wf-cta-btn{padding:7px 14px;font-size:10px;border-radius:6px;font-weight:500}
+.step-dots{display:flex;align-items:center;gap:0;margin-bottom:10px}
+.s-dot{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:500}
+.s-dot.done{background:var(--en-blue);color:#fff}
+.s-dot.active{background:var(--en-blue);color:#fff}
+.s-dot.todo{background:var(--en-bg);color:var(--en-gray);border:0.5px solid var(--en-border)}
+.s-line{flex:1;height:1px;background:var(--en-border)}
+.s-line.done{background:var(--en-blue)}
+.wf-tag{display:inline-block;font-size:8px;padding:2px 6px;border-radius:20px;background:var(--en-bg);color:var(--en-gray);border:0.5px solid var(--en-border);margin:1px}
+</style>
+
+<div class="wf-wrap">
+<h2 class="sr-only">クリニック開業ラボ ブランドカラー適用ワイヤーフレーム</h2>
+
+<div class="page-tabs">
+  <button class="tab active" onclick="showPage('top')">① ラボTOP</button>
+  <button class="tab" onclick="showPage('sim')">② シミュレーター</button>
+  <button class="tab" onclick="showPage('seminar')">③ セミナー</button>
+  <button class="tab" onclick="showPage('column')">④ コラム</button>
+  <button class="tab" onclick="showPage('contact')">⑤ 相談フォーム</button>
+</div>
+
+<div id="page-top" class="page active">
+  <div class="device">
+    <div class="section-header"><span class="page-title">ラボ TOP</span><span class="page-url">med-pro.jp/lab/</span></div>
+    <div class="wf">
+      <div class="wf-nav">
+        <div class="wf-logo">
+          <div class="wf-logo-mark"><div class="wf-logo-bar" style="background:var(--en-blue)"></div><div class="wf-logo-bar" style="background:var(--en-red);margin-top:3px"></div></div>
+          クリニック開業ラボ
+        </div>
+        <div class="wf-navlinks"><span class="wf-navlink">シミュレーター</span><span class="wf-navlink">セミナー</span><span class="wf-navlink">相談</span></div>
+      </div>
+      <div class="wf-hero">
+        <div class="wf-hero-tag">医師・院長向け 無料サービス</div>
+        <div class="wf-hero-h">開業・承継・経営を、<br>医師が本音で学べる場所</div>
+        <div class="wf-hero-sub">クリニックの未来について、まず情報収集だけでも構いません</div>
+        <div><span class="wf-btn wf-btn-primary">売却相場を匿名で調べる</span></div>
+        <div style="margin-top:4px"><span class="wf-btn wf-btn-red">無料セミナーに参加する</span></div>
+      </div>
+      <div class="wf-section">
+        <div class="wf-label">3つのサービス</div>
+        <div class="card-grid">
+          <div class="wf-card"><div class="wf-card-icon"></div><div class="wf-card-t">売却相場シミュレーター</div><div class="wf-card-p">匿名・無料で確認</div></div>
+          <div class="wf-card"><div class="wf-card-icon"></div><div class="wf-card-t">オンラインセミナー</div><div class="wf-card-p">月1回・無料開催</div></div>
+          <div class="wf-card"><div class="wf-card-icon"></div><div class="wf-card-t">無料個別相談</div><div class="wf-card-p">M&A・承継・開業</div></div>
+        </div>
+      </div>
+      <div class="wf-section">
+        <div class="wf-label">運営者プロフィール</div>
+        <div class="wf-profile">
+          <div class="wf-avatar"></div>
+          <div><div style="font-size:10px;font-weight:500;color:var(--en-text)">鎌形 ○○ / EN代表</div><div style="font-size:9px;color:var(--en-gray);margin-top:2px;line-height:1.5">クリニック開業支援・M&A仲介<br>YouTube「Dr.鎌形の未来の医療ナビ」</div></div>
+        </div>
+      </div>
+      <div class="wf-section">
+        <div class="wf-label">最新コラム</div>
+        <div class="wf-article"><div class="wf-article-thumb"></div><div><div style="font-size:9px;font-weight:500;color:var(--en-text)">クリニック売却相場の基礎知識</div><div style="font-size:8px;color:var(--en-gray);margin-top:2px">承継・売却 / 2026.04</div></div></div>
+        <div class="wf-article"><div class="wf-article-thumb"></div><div><div style="font-size:9px;font-weight:500;color:var(--en-text)">法人譲渡と事業譲渡の違いとは</div><div style="font-size:8px;color:var(--en-gray);margin-top:2px">M&A基礎知識 / 2026.04</div></div></div>
+      </div>
+      <div class="wf-footer"><div class="wf-footer-text">株式会社EN｜プライバシーポリシー｜© 2026 EN Inc.</div></div>
+    </div>
+  </div>
+</div>
+
+<div id="page-sim" class="page">
+  <div class="device">
+    <div class="section-header"><span class="page-title">シミュレーター</span><span class="page-url">med-pro.jp/lab/simulation/</span></div>
+    <div class="wf">
+      <div class="wf-nav">
+        <div class="wf-logo"><div class="wf-logo-mark"><div class="wf-logo-bar" style="background:var(--en-blue)"></div><div class="wf-logo-bar" style="background:var(--en-red);margin-top:3px"></div></div>クリニック開業ラボ</div>
+        <div class="wf-navlinks"><span class="wf-navlink">シミュレーター</span><span class="wf-navlink">セミナー</span><span class="wf-navlink">相談</span></div>
+      </div>
+      <div class="wf-section"><div class="wf-h">クリニック売却相場シミュレーター</div><div class="wf-p">入力情報は保存されません。匿名でご利用いただけます。</div></div>
+      <div class="wf-section" style="background:var(--en-bg)">
+        <div class="wf-label">クリニックの形態</div>
+        <div class="card-grid"><div class="wf-card" style="text-align:center;font-size:9px;color:var(--en-gray)">個人<br>クリニック</div><div class="wf-card" style="text-align:center;font-size:9px;background:#e8f4fb;color:var(--en-blue-dark);font-weight:500;border:1.5px solid var(--en-blue)">医療法人<br>（選択中）</div><div class="wf-card" style="text-align:center;font-size:9px;color:var(--en-gray)">MS法人<br>あり</div></div>
+        <div class="wf-label" style="margin-top:9px">譲渡方式</div>
+        <div class="card-grid t2"><div class="wf-card" style="text-align:center;font-size:9px;background:#e8f4fb;color:var(--en-blue-dark);font-weight:500;border:1.5px solid var(--en-blue)">法人譲渡<br>（選択中）</div><div class="wf-card" style="text-align:center;font-size:9px;color:var(--en-gray)">事業譲渡</div></div>
+        <div class="wf-label" style="margin-top:9px">診療科 / エリア</div>
+        <div class="card-grid t2"><div class="wf-select"></div><div class="wf-select"></div></div>
+        <div class="wf-label" style="margin-top:9px">年間売上</div>
+        <div class="wf-slider"><div class="wf-slider-thumb"></div></div>
+        <div style="display:flex;justify-content:space-between;margin-top:3px"><span style="font-size:8px;color:var(--en-gray)">1,000万円</span><span style="font-size:9px;font-weight:500;color:var(--en-text)">8,000万円</span><span style="font-size:8px;color:var(--en-gray)">5億円</span></div>
+        <div class="wf-label" style="margin-top:9px">② 譲渡資産の入力</div>
+        <div class="card-grid t2"><div><div style="font-size:8px;color:var(--en-gray)">現預金</div><div class="wf-field"></div></div><div><div style="font-size:8px;color:var(--en-gray)">医療機器</div><div class="wf-field"></div></div></div>
+      </div>
+      <div class="wf-section">
+        <div class="wf-label">売却価格の内訳（概算）</div>
+        <div style="background:var(--en-bg);border-radius:6px;padding:9px;border:0.5px solid var(--en-border)">
+          <div style="display:flex;justify-content:space-between;font-size:9px;color:var(--en-gray);padding:3px 0;border-bottom:0.5px solid var(--en-border)"><span>営業権代（EBITDA × 1.5〜2.8倍）</span><span style="font-weight:500;color:var(--en-text)">1,200〜2,240万円</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:9px;color:var(--en-gray);padding:3px 0;border-bottom:0.5px solid var(--en-border)"><span>＋ 譲渡資産</span><span style="font-weight:500;color:var(--en-text)">0万円</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:10px;font-weight:500;color:var(--en-text);padding:5px 0 0"><span>概算売却価格レンジ</span><span>1,200〜2,240万円</span></div>
+        </div>
+        <div class="wf-label" style="margin-top:9px">手取り比較</div>
+        <div class="card-grid t2">
+          <div class="wf-card" style="border:1.5px solid var(--en-blue);background:#e8f4fb"><div style="font-size:8px;font-weight:500;color:var(--en-blue-dark);margin-bottom:3px">法人譲渡（選択中）</div><div style="font-size:8px;color:var(--en-gray)">税率 約20%</div><div style="font-size:10px;font-weight:500;color:var(--en-blue-dark);margin-top:3px">手取り 1,456万円</div></div>
+          <div class="wf-card"><div style="font-size:8px;font-weight:500;color:var(--en-gray);margin-bottom:3px">事業譲渡</div><div style="font-size:8px;color:var(--en-gray)">税率 約40%</div><div style="font-size:10px;font-weight:500;color:var(--en-text);margin-top:3px">手取り 1,092万円</div></div>
+        </div>
+      </div>
+      <div class="wf-cta-bar"><span class="wf-cta-btn" style="background:var(--en-red);color:#fff">無料相談を申し込む</span></div>
+      <div class="wf-footer"><div class="wf-footer-text">株式会社EN｜プライバシーポリシー｜© 2026 EN Inc.</div></div>
+    </div>
+  </div>
+</div>
+
+<div id="page-seminar" class="page">
+  <div class="device">
+    <div class="section-header"><span class="page-title">セミナー案内</span><span class="page-url">med-pro.jp/lab/seminar/</span></div>
+    <div class="wf">
+      <div class="wf-nav"><div class="wf-logo"><div class="wf-logo-mark"><div class="wf-logo-bar" style="background:var(--en-blue)"></div><div class="wf-logo-bar" style="background:var(--en-red);margin-top:3px"></div></div>クリニック開業ラボ</div><div class="wf-navlinks"><span class="wf-navlink">シミュレーター</span><span class="wf-navlink">セミナー</span><span class="wf-navlink">相談</span></div></div>
+      <div class="wf-section"><div class="wf-h">クリニック開業ラボ｜オンラインセミナー</div><div class="wf-p">医師が本音で学べる、月1回の無料オンライン勉強会です。</div></div>
+      <div class="wf-section">
+        <div class="wf-label">直近開催</div>
+        <div class="wf-seminar-box">
+          <div style="font-size:9px;color:var(--en-blue-dark);font-weight:500;margin-bottom:3px">第1回 / 2026年5月27日（火）20:00〜20:45</div>
+          <div style="font-size:10px;font-weight:500;color:var(--en-text);margin-bottom:5px;line-height:1.4">新規開業 vs 承継開業<br>医師が知らないリアルな選択肢</div>
+          <div style="margin-bottom:7px"><span class="wf-tag">Google Meet</span><span class="wf-tag">無料</span><span class="wf-tag">定員30名</span></div>
+          <span class="wf-cta-btn" style="background:var(--en-red);color:#fff;font-size:9px;padding:5px 12px;border-radius:5px;display:inline-block">申し込む</span>
+        </div>
+      </div>
+      <div class="wf-section">
+        <div class="wf-label">今後のテーマ予定</div>
+        <div style="font-size:9px;color:var(--en-gray);padding:4px 0;border-bottom:0.5px solid var(--en-border2)">第2回（6月）クリニックM&Aの資金調達と融資戦略</div>
+        <div style="font-size:9px;color:var(--en-gray);padding:4px 0;border-bottom:0.5px solid var(--en-border2)">第3回（7月）承継開業した医師のリアルな1年目</div>
+        <div style="font-size:9px;color:var(--en-gray);padding:4px 0">第4回（8月）事務長代行活用で変わるクリニック経営</div>
+      </div>
+      <div class="wf-cta-bar"><span class="wf-cta-btn" style="border:1px solid var(--en-red);color:var(--en-red);background:#fff;font-size:9px;padding:6px 14px;border-radius:5px">無料相談はこちら</span></div>
+      <div class="wf-footer"><div class="wf-footer-text">株式会社EN｜プライバシーポリシー｜© 2026 EN Inc.</div></div>
+    </div>
+  </div>
+</div>
+
+<div id="page-column" class="page">
+  <div class="device">
+    <div class="section-header"><span class="page-title">コラム一覧</span><span class="page-url">med-pro.jp/lab/column/</span></div>
+    <div class="wf">
+      <div class="wf-nav"><div class="wf-logo"><div class="wf-logo-mark"><div class="wf-logo-bar" style="background:var(--en-blue)"></div><div class="wf-logo-bar" style="background:var(--en-red);margin-top:3px"></div></div>クリニック開業ラボ</div><div class="wf-navlinks"><span class="wf-navlink">シミュレーター</span><span class="wf-navlink">セミナー</span><span class="wf-navlink">相談</span></div></div>
+      <div class="wf-section">
+        <div class="wf-h">コラム</div>
+        <div style="display:flex;gap:4px;flex-wrap:wrap;margin-top:7px">
+          <span class="wf-tag" style="background:#e8f4fb;color:var(--en-blue-dark);border-color:var(--en-blue)">すべて</span>
+          <span class="wf-tag">承継・売却</span><span class="wf-tag">開業・経営</span><span class="wf-tag">M&A基礎知識</span><span class="wf-tag">セミナーレポート</span>
+        </div>
+      </div>
+      <div class="wf-section">
+        <div class="wf-article"><div class="wf-article-thumb"></div><div><span class="wf-tag" style="margin:0 0 2px 0;background:#fde8e8;color:var(--en-red);border-color:var(--en-red)">承継・売却</span><div style="font-size:9px;font-weight:500;color:var(--en-text)">クリニック売却相場の基礎知識｜診療科別・エリア別に解説</div><div style="font-size:8px;color:var(--en-gray);margin-top:2px">2026.04.10</div></div></div>
+        <div class="wf-article"><div class="wf-article-thumb"></div><div><span class="wf-tag" style="margin:0 0 2px 0">M&A基礎知識</span><div style="font-size:9px;font-weight:500;color:var(--en-text)">法人譲渡と事業譲渡の違い｜税負担と手取りを比較</div><div style="font-size:8px;color:var(--en-gray);margin-top:2px">2026.04.05</div></div></div>
+        <div class="wf-article"><div class="wf-article-thumb"></div><div><span class="wf-tag" style="margin:0 0 2px 0">開業・経営</span><div style="font-size:9px;font-weight:500;color:var(--en-text)">新規開業 vs 承継開業｜初期費用・リスクを徹底比較</div><div style="font-size:8px;color:var(--en-gray);margin-top:2px">2026.03.28</div></div></div>
+      </div>
+      <div class="wf-section" style="background:var(--en-bg)">
+        <div class="wf-label">記事末尾 固定CTA（全記事自動表示）</div>
+        <div style="display:flex;flex-direction:column;gap:5px;margin-top:5px">
+          <span class="wf-cta-btn" style="background:var(--en-blue);color:#fff;font-size:9px;padding:6px;border-radius:5px;text-align:center;display:block">売却相場をシミュレーターで確認する（無料・匿名）</span>
+          <span class="wf-cta-btn" style="background:var(--en-red);color:#fff;font-size:9px;padding:6px;border-radius:5px;text-align:center;display:block">承継・売却の無料相談を申し込む</span>
+        </div>
+      </div>
+      <div class="wf-footer"><div class="wf-footer-text">株式会社EN｜プライバシーポリシー｜© 2026 EN Inc.</div></div>
+    </div>
+  </div>
+</div>
+
+<div id="page-contact" class="page">
+  <div class="device">
+    <div class="section-header"><span class="page-title">無料相談フォーム</span><span class="page-url">med-pro.jp/lab/contact/</span></div>
+    <div class="wf">
+      <div class="wf-nav"><div class="wf-logo"><div class="wf-logo-mark"><div class="wf-logo-bar" style="background:var(--en-blue)"></div><div class="wf-logo-bar" style="background:var(--en-red);margin-top:3px"></div></div>クリニック開業ラボ</div><div class="wf-navlinks"><span class="wf-navlink">シミュレーター</span><span class="wf-navlink">セミナー</span><span class="wf-navlink">相談</span></div></div>
+      <div class="wf-section">
+        <div class="wf-h">無料相談のお申し込み</div>
+        <div style="background:var(--en-bg);border-radius:0;padding:8px 10px;font-size:9px;color:var(--en-gray);line-height:1.6;margin-top:7px;border-left:3px solid var(--en-blue)">現時点で売却を決めていなくても構いません。「相場を知りたい」「選択肢を整理したい」という段階でもお気軽にどうぞ。</div>
+      </div>
+      <div class="wf-section">
+        <div style="font-size:9px;color:var(--en-gray);margin-bottom:3px">お名前 <span style="color:var(--en-red)">必須</span></div><div class="wf-field"></div>
+        <div style="font-size:9px;color:var(--en-gray);margin:7px 0 3px">メールアドレス <span style="color:var(--en-red)">必須</span></div><div class="wf-field"></div>
+        <div class="wf-form-row"><div><div style="font-size:9px;color:var(--en-gray);margin-bottom:3px">電話番号</div><div class="wf-field"></div></div><div><div style="font-size:9px;color:var(--en-gray);margin-bottom:3px">診療科</div><div class="wf-field"></div></div></div>
+        <div style="font-size:9px;color:var(--en-gray);margin:7px 0 3px">相談内容</div><div class="wf-textarea"></div>
+        <div style="font-size:9px;color:var(--en-gray);margin:7px 0 3px">現在の検討状況</div>
+        <div class="wf-radio-group"><div class="wf-radio"><div class="wf-radio-dot"></div>情報収集中</div><div class="wf-radio"><div class="wf-radio-dot"></div>2〜3年以内に検討したい</div><div class="wf-radio"><div class="wf-radio-dot"></div>1年以内に動きたい</div></div>
+        <div style="margin-top:10px;text-align:center"><span class="wf-cta-btn" style="background:var(--en-red);color:#fff;font-size:10px;padding:8px 20px;border-radius:6px;display:inline-block">送信する</span></div>
+      </div>
+      <div class="wf-footer"><div class="wf-footer-text">株式会社EN｜プライバシーポリシー｜© 2026 EN Inc.</div></div>
+    </div>
+  </div>
+</div>
+</div>
+
+<script>
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('page-'+id).classList.add('active');
+  event.target.classList.add('active');
+}
+</script>
